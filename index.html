@@ -1,0 +1,117 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+        <link rel="stylesheet" href="Untitled-2.css">
+   
+
+</head>
+    <script type = "text/javascript"> 
+    
+    let countArr = [];   
+        document.onkeydown = function(e) {
+    let normal = document.getElementById("normal");        
+    let leftHuman = document.getElementById("leftHuman");
+    let rightHuman = document.getElementById("rightHuman");
+    let jumpHuman = document.getElementById("jumpHuman");
+            
+    let count = document.getElementById('count');
+                   
+    switch (e.keyCode) { 
+    
+        case 37:
+        normal.style.display = "none";    
+        rightHuman.style.display = "none";
+        leftHuman.style.display = "block";
+        setTimeout(function(){
+            leftHuman.style.display = "none";
+            normal.style.display = "block";
+        }, 100);    
+        countArr.push('a');
+            break;
+    
+        case 39:
+         normal.style.display = "none";     
+        leftHuman.style.display = "none";
+        rightHuman.style.display = "block";
+        setTimeout(function(){
+            rightHuman.style.display = "none";
+            normal.style.display = "block";
+        }, 100);    
+        countArr.push('b');    
+            break;
+       };
+            
+    let gageHeight = countArr.length * 2;
+            
+    let gage = document.getElementById("gageInner");
+    console.log(countArr.length);
+            
+        
+ 
+                       
+    if(countArr.length < 40){
+    gage.style.height = gageHeight;
+    count.innerHTML = countArr.length;    
+    
+    }        
+    else if(countArr.length >= 40 && countArr.length < 80){
+    gage.style.backgroundColor = "orange"
+    gage.style.height = gageHeight;
+    count.innerHTML = countArr.length;    
+    }
+    else if(countArr.length >= 80 && countArr.length <110){
+    gage.style.backgroundColor = "red"
+    gage.style.height = gageHeight;  
+    count.innerHTML = countArr.length;    
+    }
+    else if(countArr.length === 110){
+    gage.style.height = gageHeight; 
+        normal.style.display = "none";     
+        leftHuman.style.display = "none";
+        rightHuman.style.display = "none";
+        jumpHuman.style.display = "block";
+           setTimeout(function(){
+            leftHuman.style.display = "none";
+            normal.style.display = "none";
+        }, 100);   
+    count.innerHTML = countArr.length;
+    }   
+   
+else if(countArr.length > 110){
+            setTimeout(function(){
+            leftHuman.style.display = "none";
+            normal.style.display = "none";
+        }, 100);    
+    normal.style.display = "none";
+                               
+    countArr.pop(); count.innerHTML = countArr.length; 
+     
+    leftHuman.style.display = "none";
+    rightHuman.style.display = "none";
+     }
+            
+else;            
+};
+        
+     
+        
+    </script>
+
+
+<body>
+    <audio id="audio" autoplay loop>
+        <source src="mr_tea_3.wav" type="audio/mpeg">
+    </audio>
+    <div id="count"></div>
+    <img src="background_4.png" class="bg">
+    <div id = "gage"><div id="gageInner"></div></div>
+    <div id = "humanWrapper">
+    <img class ="human" id="normal" src="normal_3.png">    
+    <img class="human" id="leftHuman" src="left_2.png">
+    <img class="human" id="rightHuman" src="right_2.png">
+    <img class="human" id="jumpHuman" src="jump_5.gif">    
+    </div>
+    
+</body>
+    
+</html>
